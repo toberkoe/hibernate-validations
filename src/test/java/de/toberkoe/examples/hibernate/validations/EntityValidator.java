@@ -48,6 +48,7 @@ public final class EntityValidator {
 		if (violations.stream()
 				.map(ConstraintViolation::getPropertyPath)
 				.map(Path::toString)
+				.peek(System.out::println)
 				.anyMatch(n -> n.equals(attributeName))) {
 			return this;
 		}

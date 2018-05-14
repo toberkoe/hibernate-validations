@@ -31,7 +31,6 @@ public final class EntityValidator {
 
 	public EntityValidator isValid() {
 		if (!violations.isEmpty()) {
-			violations.forEach(System.out::println);
 			throw new AssertionError("Expected entity to be valid");
 		}
 		return this;
@@ -48,11 +47,15 @@ public final class EntityValidator {
 		if (violations.stream()
 				.map(ConstraintViolation::getPropertyPath)
 				.map(Path::toString)
-				.peek(System.out::println)
 				.anyMatch(n -> n.equals(attributeName))) {
 			return this;
 		}
 		throw new AssertionError("Expected invalid attributes to contain " + attributeName);
 	}
 
+	public void printMessages() {
+		violations.stream()
+				.map(ConstraintViolation::getMessage)
+				.forEach(System.out::println);
+	}
 }

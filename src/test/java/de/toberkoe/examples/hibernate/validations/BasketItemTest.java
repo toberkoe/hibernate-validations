@@ -84,6 +84,16 @@ class BasketItemTest {
 			assertThat(basketItem).isValid();
 		}
 
+		@Test
+		@DisplayName("Complied Limited Quantity")
+		void shouldFailOnQuantityGreaterOne() {
+			basketItem.getProduct().setLimitedQuantity(true);
+			basketItem.setQuantity(2);
+			assertThat(basketItem)
+					.isInvalid()
+					.printMessages();
+		}
+
 	}
 
 }

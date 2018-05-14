@@ -21,6 +21,8 @@ public class Product {
 	@DecimalMin("0.01")
 	private BigDecimal price;
 
+	private boolean limitedQuantity;
+
 	public Product() {
 	}
 
@@ -62,5 +64,13 @@ public class Product {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+
+	public boolean isLimitedQuantity() {
+		return limitedQuantity;
+	}
+
+	public void setLimitedQuantity(boolean limitedQuantity) {
+		this.limitedQuantity = limitedQuantity;
 	}
 }

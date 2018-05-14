@@ -1,9 +1,11 @@
 package de.toberkoe.examples.hibernate.validations;
 
+import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@CompliedLimitedQuantity
 public class BasketItem {
 
 	private long id;
@@ -17,6 +19,13 @@ public class BasketItem {
 
 	public BasketItem() {
 
+	}
+
+	public static BasketItem create(Product product, int quantity) {
+		BasketItem item = new BasketItem();
+		item.setProduct(product);
+		item.setQuantity(quantity);
+		return item;
 	}
 
 	public long getId() {
@@ -43,10 +52,8 @@ public class BasketItem {
 		this.product = product;
 	}
 
-	public static BasketItem create(Product product, int quantity) {
-		BasketItem item = new BasketItem();
-		item.setProduct(product);
-		item.setQuantity(quantity);
-		return item;
+	@Override
+	public String toString() {
+		return quantity + " x " + Optional.ofNullable(product).map(Product::getName).orElse("");
 	}
 }

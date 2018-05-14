@@ -42,4 +42,11 @@ public class BasketItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	public static BasketItem create(Product product, int quantity) {
+		BasketItem item = new BasketItem();
+		item.setProduct(product);
+		item.setQuantity(quantity);
+		return item;
+	}
 }

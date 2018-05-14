@@ -17,6 +17,12 @@ public class Basket {
 	public Basket() {
 	}
 
+	public static Basket create(BasketItem... items) {
+		Basket basket = new Basket();
+		Stream.of(items).forEach(basket::addItem);
+		return basket;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -31,12 +37,6 @@ public class Basket {
 
 	public void setItems(List<BasketItem> items) {
 		this.items = items;
-	}
-
-	public static Basket create(BasketItem... items) {
-		Basket basket = new Basket();
-		Stream.of(items).forEach(basket::addItem);
-		return basket;
 	}
 
 	public void addItem(BasketItem item) {
